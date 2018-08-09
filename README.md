@@ -1,5 +1,12 @@
 # BfasrMultiClientPoc
 
+## Getting started
+
+Requires angular-cli >=6.1.1.
+
+git clone
+npm install
+
 To run or build the project with the base config:
 
 ```bash
@@ -14,18 +21,18 @@ ng s client1 --c=development
 ng build client1
 ```
 
-#3 parts:
+## 3 parts:
 
-## theming
+### theming
 
 Set styles.scss and theme.scss paths in client project to client/clientName/.
 
-## assets
+### assets
 
 project change assets folder to point to client assets folder,
 environment.\*.ts change assetsPath to client path and always use prefix an aset path with this
 
-## translations
+### translations
 
 Mark text to be translated with i18n attribute and an id:
 
@@ -61,6 +68,6 @@ Add client speicifc translations to client/clientName/messages.xlf
 </xliff>
 ```
 
-## Client specific code.
+### Client specific code.
 
 Angular-cli now supports libraries uner a single project https://github.com/angular/angular-cli/wiki/stories-create-library. Client specific code could be moved out into a library which is only included in the specific client build.

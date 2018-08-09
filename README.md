@@ -1,27 +1,66 @@
 # BfasrMultiClientPoc
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
+To run or build the project with the base config:
 
-## Development server
+```bash
+ng s --c=development
+ng build
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To run or build the project with a different client config
 
-## Code scaffolding
+```bash
+ng s client1 --c=development
+ng build client1
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#3 parts:
 
-## Build
+## theming
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Set styles.scss and theme.scss paths in client project to client/clientName/.
 
-## Running unit tests
+## assets
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+project change assets folder to point to client assets folder,
+environment.\*.ts change assetsPath to client path and always use prefix an aset path with this
 
-## Running end-to-end tests
+## translations
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Mark text to be translated with i18n attribute and an id:
 
-## Further help
+```html
+    <p class="mat-body-1" i18n="@@clientDescription">Client specific description from translate file.</p>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+create translate source file
+
+```bash
+    ng xi18n
+```
+
+will create ./src/messages.xlf.
+
+Add client speicifc translations to client/clientName/messages.xlf
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="clientDescription" datatype="html">
+        <source>Client specific description from translate file.</source>
+        <target>Client 1 translated description.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+```
+
+## Client specific code.
+
+Angular-cli now supports libraries uner a single project https://github.com/angular/angular-cli/wiki/stories-create-library. Client specific code could be moved out into a library which is only included in the specific client build.

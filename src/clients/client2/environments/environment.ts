@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  appName: 'Base App',
-  assetsPath: 'assets'
+  appName: 'Client 2 App',
+  assetsPath: 'clients/client2/assets'
 };
 
 /*
